@@ -1,0 +1,33 @@
+version: '3.9'
+services:
+  web:
+    image: srv-discovery:latest
+    container_name: srv-discovery
+    networks:
+#      - schambeck-bridge
+      - schambeck-overlay
+      - backend
+    deploy:
+      replicas: 1
+      resources:
+        limits:
+          memory: 384M
+        reservations:
+          memory: 256M
+  haproxy:
+    image: haproxytech/haproxy-alpine:latest
+    container_name: srv-discovery-haproxy
+    networks:
+      - schambeck-overlay
+      - backend
+    volumes:
+      - ./haproxy.cfg:/usr/local/etc/haproxy/haproxy.cfg:ro
+    ports:
+      - "4020:80"
+      - "8424:8404"
+networks:
+#  schambeck-bridge:
+#    external: true
+  schambeck-overlay:
+    external: true
+  backend: {}
