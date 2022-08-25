@@ -8,6 +8,7 @@ class DiscoveryApplicationTests {
 
 	@Test
 	void contextLoads() {
+		// No content
 	}
 
 }

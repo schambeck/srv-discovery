@@ -48,7 +48,12 @@ docker-build:
 	DOCKER_BUILDKIT=1 docker build -f ${DOCKER_CONF} -t ${DOCKER_IMAGE} --build-arg=JAR_FILE=${JAR} target
 
 docker-run:
-	docker run -d --rm --net schambeck-bridge --name ${APP} -p 8761:8761 ${DOCKER_IMAGE}
+	docker run -d \
+		--restart=always \
+		--net schambeck-bridge \
+		--name ${APP} \
+		--publish 8761:8761 \
+		${DOCKER_IMAGE}
 
 --rm-docker-image:
 	docker rmi ${DOCKER_IMAGE}

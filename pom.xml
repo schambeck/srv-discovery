@@ -16,7 +16,7 @@
 
     <properties>
         <java.version>17</java.version>
-        <spring-cloud.version>2021.0.3</spring-cloud.version>
+        <spring-cloud-dependencies.version>2021.0.3</spring-cloud-dependencies.version>
         <caffeine.version>3.1.1</caffeine.version>
     </properties>
 
@@ -43,7 +43,7 @@
             <dependency>
                 <groupId>org.springframework.cloud</groupId>
                 <artifactId>spring-cloud-dependencies</artifactId>
-                <version>${spring-cloud.version}</version>
+                <version>${spring-cloud-dependencies.version}</version>
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
