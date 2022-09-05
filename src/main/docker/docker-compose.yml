@@ -3,7 +3,9 @@ services:
   web:
     image: srv-discovery:latest
     networks:
-      - schambeck-overlay
+      schambeck-net:
+        aliases:
+          - srv-discovery
     deploy:
       replicas: 1
       resources:
@@ -15,5 +17,5 @@ services:
       - target: 8761
         published: 8761
 networks:
-  schambeck-overlay:
+  schambeck-net:
     external: true
