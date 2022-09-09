@@ -78,7 +78,7 @@ docker-pull:
 docker-logs:
 	docker logs ${APP} -f
 
-# Docker Compose
+# Compose
 
 dist-compose-up: dist compose-up
 
@@ -95,7 +95,7 @@ compose-down-rmi: --compose-down --rm-docker-image
 compose-logs:
 	docker-compose -f ${COMPOSE_CONF} logs -f \web
 
-# Docker Swarm
+# Swarm
 
 stack-deploy:
 	docker stack deploy -c ${STACK_CONF} --with-registry-auth ${APP}
