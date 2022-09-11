@@ -55,7 +55,6 @@ docker-build:
 docker-run:
 	docker run -d \
 		--restart=always \
-		--net schambeck-bridge \
 		--name ${APP} \
 		--publish 8761:8761 \
 		${DOCKER_IMAGE}
@@ -105,34 +104,3 @@ stack-rm:
 
 service-logs:
 	docker service logs ${APP}_web -f
-
-# Kubernetes
-
-k8s-create-deployment:
-	kubectl create deployment ${APP} --image=${DOCKER_IMAGE}
-
-k8s-delete-deployment:
-	kubectl delete deployment ${APP}
-
-k8s-expose-deployment:
-	kubectl expose deployment ${APP} --type=NodePort --port=8761
-
-k8s-get-services:
-	kubectl get services ${APP}
-
-k8s-service:
-	minikube service ${APP}
-
-# docker2
-
-docker2-build:
-	docker build --tag ${APP} .
-
-docker2-run:
-	docker run --rm -p 8761:8761 --name ${APP} ${APP}
-
-docker2-test:
-	docker build -t ${APP} --target test .
-
-compose2-up:
-	docker-compose -f docker-compose.dev.yml up --build
